@@ -1,5 +1,10 @@
 
 <template>
+ <div class='carousel-controls'>
+  <div class="textControls"><h5>See the TOP Films</h5></div>
+      <i class="fa fa-angle-left "  @click="previous"></i>
+           <i class="fa fa-angle-right" @click="next"></i>
+     </div>
 <transition-group
       class='carousel'
       tag="div">
@@ -8,10 +13,7 @@
      <h2>{{topMovie.orginal_title}}</h2>
      </div>
 </transition-group>
- <div class='carousel-controls'>
-      <button class='carousel-controls__button' @click="previous">prev</button>
-      <button class='carousel-controls__button' @click="next">next</button>
-    </div>
+
 </template>
 
 <script>
@@ -41,29 +43,57 @@ export default {
 </script>
 
 <style scoped>
-.carousel-view {
+/* .carousel-view {
   display: flex;
   flex-direction: column;
   align-items: center;
+} */
+
+.textControls{
+  text-align: left;
+      margin-bottom: -1.5rem;
+        font-size: 32px;
+        margin-left: 140px;
+  }
+
+.carousel-controls{
+  text-align: right;
+          margin-top: 85px;
+
 }
+i.fa.fa-angle-right::before{
+font-size:23px;
+margin-right: 168px;
+  }
+
+ i.fa.fa-angle-left::before{
+font-size: 23px;
+margin-right: 45px;
+
+ }
 .carousel {
   display: flex;
   justify-content:center;
   align-items: center;
   overflow: hidden;
-  width: 90m;
+  width: 100%;
   min-height: auto;
 }
 .topMovies {
   flex: 0  20em;
    height: 20em;
-   margin: 1em;
+   margin: 40px;
   display: flex;
   justify-content:center;
   align-items: center;
    border-radius: 50%;
   transition: transform 0.3s ease-in-out;
 
+}
+
+.topMovies img{
+  width: 250px;
+height: 376px;
 }
 
 .result:first-of-type {

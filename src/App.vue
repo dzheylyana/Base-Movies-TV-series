@@ -16,8 +16,9 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+   color: #2c3e50;
+ background: #020916 0% 0% no-repeat padding-box;
+opacity: 1;
 }
 
 nav {
@@ -32,4 +33,5 @@ nav {
     }
   }
 }
+
 </style>

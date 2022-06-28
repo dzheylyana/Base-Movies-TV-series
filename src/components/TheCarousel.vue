@@ -11,12 +11,16 @@
         :releaseData="result.releaseData"
         :backdrop_path="result.backdrop_path">
      <img :src="`https://image.tmdb.org/t/p/w500/${result.backdrop_path}`"/>
-       </div>
-    </transition-group>
-    <div class='carousel-controls'>
-      <button class='carousel-controls__button' @click="previous">prev</button>
-      <button class='carousel-controls__button' @click="next">next</button>
-    </div>
+             <div class="theTitle">{{result.title}}</div>
+                          <div class="originalTitle">{{result.original_language}}</div>
+
+        </div>
+     </transition-group>
+
+    <div class='carouselSliders'>
+      <i class="fa fa-angle-left"  @click="previous"></i>
+           <i class="fa fa-angle-right" @click="next"></i>
+     </div>
   </div>
 </template>
 
@@ -45,33 +49,80 @@ export default {
 </script>
 
 <style scoped>
+.originalTitle {
+    position:absolute;
+    width:100%;
+   text-align:left;
+    top:60%;
+   margin-top:-30px;
+   margin-left: 100px;
+font-size: 44px;
+   color: antiquewhite;
+}
+.theTitle {
+    position:absolute;
+    width:100%;
+   text-align:left;
+    top:51%;
+   margin-top:-50px;
+   margin-left: 100px;
+font-size: 66px;
+   color: antiquewhite;
+}
+i.fa.fa-angle-right::before{
+font-size:23px;
+
+ }
+
+ i.fa.fa-angle-left::before{
+font-size: 23px;
+margin-right: 45px;
+
+ }
 .carousel-view {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px;
+  height: 501px;
+  width: 100%;
+ background: transparent linear-gradient(180deg, #0729561E 0%, #020916 100%) 0% 0% no-repeat padding-box;
+ border-radius: 10px;
+opacity: 1;
 }
 .carousel {
   display: flex;
   justify-content:center;
   align-items: center;
   overflow: hidden;
-  width: 90em;
-  min-height: auto;
+  width: 100%;
+
 }
 .result {
   flex: 0  20em;
-   height: 20em;
-   margin: 1em;
+    margin: 1em;
   display: flex;
   justify-content:center;
   align-items: center;
-   border-radius: 50%;
-  transition: transform 0.3s ease-in-out;
+   transition: transform 0.1s ease-in-out;
+  max-width: 100%;
+
+;
+
+}
+
+.result img{
+ top: 120px;
+left: 169px;
+width: 1582px;
+height: 500px;
+   border-radius: 6%;
 
 }
 
 .result:first-of-type {
-  opacity: 0;
+  width: 12px;
+opacity: 0;
 }
 .result:last-of-type {
   opacity: 0;
