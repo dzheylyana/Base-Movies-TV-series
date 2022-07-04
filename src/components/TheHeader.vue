@@ -2,83 +2,118 @@
   <header>
     <nav class="navbar navigation">
       <div class="leftSide">
-        <img src="../assets/Image.png" class="logo" />
-           <form class="form-search form-inline">
-            <input type="text" class="search-query" placeholder="Search..." />
-          </form>
-       </div>
-       <div class="rightSide">
-      <i class="fa fa-plus"></i>
-      <div class="notification">
-      <i class="fa fa-bell"></i>
-      <i class="fa fa-circle"></i>
+       <router-link to="/"> <img src="../assets/Image.png" class="logo" /></router-link>
+        <form class="form-search form-inline">
+          <input type="text" class="search-query" placeholder="Search..." />
+          <div
+            v-for="searchResult in searchResults"
+            class="result"
+            :key="searchResult.id"
+            :title="searchResult.title"
+            :releaseData="searchResult.releaseData"
+          ></div>
+          <!-- <a v-bind:href="searchResult.link" target="_blank"></a> -->
+        </form>
       </div>
-      <img src="../assets/img_avatar.png" class="avatar" alt="Avatar" />
-      <h6>Dzheylyana Vrancheva</h6>
-      <i class="fa fa-angle-down"></i>
-       </div>
+      <div class="rightSide">
+        <i class="fa fa-plus"></i>
+        <div class="notification">
+          <i class="fa fa-bell"></i>
+          <i class="fa fa-circle"></i>
+        </div>
+         <img src="../assets/img_avatar.png" class="avatar" alt="Avatar" />
+        <h6>Dzheylyana Vrancheva</h6>
+        <i class="fa fa-angle-down"></i>
+      </div>
     </nav>
   </header>
 </template>
 
-<style scoped>
-.navigation{
-  justify-content: space-between;
+<script>
+import { mapActions, mapGetters } from 'vuex'
 
+export default {
+  computed: {
+    ...mapGetters('movies', ['searchResults'])
+
+    // searchedProducts: function () {
+    //   return searchResults.title.filter((searchResult) => {
+    //     return (
+    //       searchResult.title
+    //         .toLowerCase()
+    //         .indexOf(searchQuery.value.toLowerCase()) !== -1
+    //     )
+    //   })
+    // }
+    // filteredList () {
+    //   return this.searchResults.filter(searchResult => {
+    //     return searchResult.title.toLowerCase().includes(this.search.toLowerCase())
+    //   })
+    // }
+  },
+  methods: {
+    ...mapActions('movies', ['fetchSearchResults'])
+  },
+  created () {
+    this.fetchSearchResults()
+  }
+}
+</script>
+
+<style scoped>
+.navigation {
+  justify-content: space-between;
 }
 .leftSide {
-display: flex;
-flex-direction: row;
-align-items: center;
-}
-.rightSide{
   display: flex;
-flex-direction: row;
-align-items: center;
+  flex-direction: row;
+  align-items: center;
 }
-i.fa.fa-angle-down::before{
-font-size: 18px;
-
+.rightSide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+i.fa.fa-angle-down::before {
+  font-size: 18px;
 }
 h6 {
-font-size: 18px;
-margin: 0 35px 0  24px ;
+  font-size: 18px;
+  margin: 0 35px 0 24px;
 }
 .avatar {
   vertical-align: middle;
   width: 52px;
   height: 52px;
   border-radius: 50%;
-
 }
 
-.notification{
+.notification {
   display: flex;
   flex-direction: row;
   margin-right: 50.8px;
   align-items: flex-start;
-  position:relative;
-
+  position: relative;
 }
 i.fa.fa-circle::before {
-font-size: 9px;
-margin-left: -5px;
-position: absolute;
-top: 0;
-  }
-
-i.fa.fa-plus::before{
-margin-right: 45px;
-font-size: 16px;
+  font-size: 9px;
+  margin-left: -5px;
+  position: absolute;
+  top: 0;
+  color: green;
 }
-i.fa.fa-bell::before{
-font-size: 20px;
 
+i.fa.fa-plus::before {
+  margin-right: 45px;
+  font-size: 16px;
+}
+i.fa.fa-bell::before {
+  font-size: 20px;
 }
 
 .logo {
-width: 121px;
-height: 90px;
+  width: 121px;
+  height: 90px;
 }
 header {
   background: #182131 0% 0% no-repeat padding-box;
@@ -88,7 +123,6 @@ header {
   -webkit-backdrop-filter: blur(11px);
 }
 .search-query {
-
   width: 398px;
   height: 52px;
   padding-left: 26px;
@@ -106,7 +140,7 @@ input::placeholder {
 
 form.form-search {
   position: relative;
- }
+}
 
 form.form-search:before {
   content: "";

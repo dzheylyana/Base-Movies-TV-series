@@ -12,6 +12,7 @@ export default {
 }
 </script>
 <style lang="scss">
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,6 +20,7 @@ export default {
    color: #2c3e50;
  background: #020916 0% 0% no-repeat padding-box;
 opacity: 1;
+overflow: hidden;
 }
 
 nav {

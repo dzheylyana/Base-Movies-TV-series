@@ -1,19 +1,18 @@
 <template>
-    <the-carousel></the-carousel>
-    <top-rated-movies></top-rated-movies>
-    <tv-series></tv-series>
-    <router-view></router-view>
+    <now-playing></now-playing>
+    <top-rated :is-movie=true></top-rated>
+        <top-rated :is-movie=false></top-rated>
+
+     <router-view></router-view>
 </template>
 
 <script>
-import TopRatedMovies from '../components/TopRatedMovies.vue'
-import TheCarousel from '../components/TheCarousel.vue'
-import TvSeries from '@/components/TvSeries.vue'
+import TopRated from '../components/TopRated.vue'
+import NowPlaying from '../components/NowPlaying.vue'
 export default {
   components: {
-    TheCarousel,
-    TopRatedMovies,
-    TvSeries
+    NowPlaying,
+    TopRated
   }
 }
 </script>
