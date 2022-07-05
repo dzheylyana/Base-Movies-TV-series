@@ -1,5 +1,5 @@
 <template>
-     <load-details></load-details>
+     <load-details :is-movie=true></load-details>
         </template>
 
 <script>

@@ -8,7 +8,7 @@
   </div>
       <transition-group class="carousel" tag="div">
     <div v-for="detail in topRated" class="images" :key="detail.id">
-        <router-link :to="{ name: routerLinkName, params: { id: detail.id } }">
+        <router-link :to="{ name: routerLinkName, params: { id: detail.id} }">
           <img :src="`https://image.tmdb.org/t/p/w500/${detail.backdrop_path ?? detail.poster_path }`"
         /></router-link>
         <h2>{{ detail.orginal_title }}</h2>

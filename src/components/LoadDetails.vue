@@ -12,7 +12,7 @@
    </div>
   </div>
   <!-- <the-tabs></the-tabs> -->
-  <load-actors></load-actors>
+  <load-actors :is-movie=true></load-actors>
   </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -25,9 +25,9 @@ export default {
       type: String
     },
     isMovie: {
-      type: String,
+      type: Boolean,
       required: true,
-      default: 'true'
+      default: true
     }
   },
   data () {

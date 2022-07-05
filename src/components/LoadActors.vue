@@ -18,9 +18,9 @@ export default {
       type: String
     },
     isMovie: {
-      type: String,
+      type: Boolean,
       required: true,
-      default: 'true'
+      default: true
     }
   },
   data: function () {
@@ -40,6 +40,7 @@ export default {
       const path = this.isMovie
         ? 'movies/loadActors'
         : 'series/loadTvActors'
+
       await this.$store.dispatch(path, {
         id: this.id
       })
