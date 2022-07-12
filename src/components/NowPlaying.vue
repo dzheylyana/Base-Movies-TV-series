@@ -9,7 +9,11 @@
         :releaseData="result.releaseData"
         :backdrop_path="result.backdrop_path"
       >
-       <router-link :to = " { name: 'details', params: { id: result.id, isMovie:true }}"><img  :src="`https://image.tmdb.org/t/p/w500/${result.backdrop_path}`" /></router-link>
+        <router-link
+          :to="{ name: 'details', params: { id: result.id, isMovie } }"
+          ><img
+            :src="`https://image.tmdb.org/t/p/w500/${result.backdrop_path}`"
+        /></router-link>
         <div class="theTitle">{{ result.title }}</div>
         <div class="originalLanguage">{{ result.original_language }}</div>
         <div class="releaseDate">{{ result.release_date }}</div>
@@ -26,6 +30,13 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
+  props: {
+    isMovie: {
+      type: Boolean,
+      required: true,
+      default: true
+    }
+  },
   computed: {
     ...mapGetters('movies', ['results'])
   },
@@ -52,36 +63,36 @@ export default {
   width: 100%;
   text-align: left;
   top: 70%;
-  margin-left: 30%;
-  font-size: 26px;
+  margin-left: 40%;
+  font-size: 23px;
   color: antiquewhite;
   text-align: left;
-font: normal normal normal 26px/31px SF Pro Text;
-letter-spacing: 0.1px;
- opacity: 0.7;
+  font: normal normal normal 26px/31px SF Pro Text;
+  letter-spacing: 0.1px;
+  opacity: 0.7;
 }
 .originalLanguage {
   position: absolute;
   width: 100%;
   text-align: left;
   top: 60%;
-  margin-left: 30%;
-  font-size: 44px;
+  margin-left: 40%;
+  font-size: 42px;
   color: antiquewhite;
- font: normal normal 600 44px/53px SF Pro Display;
-letter-spacing: 0.18px;
- }
+  font: normal normal 600 44px/53px SF Pro Display;
+  letter-spacing: 0.18px;
+}
 .theTitle {
   position: absolute;
   width: 100%;
   text-align: left;
   top: 51%;
-  margin-left: 30%;
-  font-size: 66px;
+  margin-left: 40%;
+  font-size: 50px;
   color: antiquewhite;
- font: normal normal bold 66px/53px SF Pro Display;
-letter-spacing: 0.27px;
- }
+  font: normal normal bold SF Pro Display;
+  letter-spacing: 0.27px;
+}
 i.fa.fa-angle-right::before {
   font-size: 23px;
 }
@@ -122,7 +133,7 @@ i.fa.fa-angle-left::before {
 .result img {
   top: 120px;
   left: 169px;
-  width: 1400px;
+  width: 800px;
   height: 500px;
   border-radius: 6%;
 }

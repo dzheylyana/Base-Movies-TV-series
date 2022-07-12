@@ -9,7 +9,10 @@ export default {
       tvSeries: [],
       seriesDetails: [],
       isReady: false,
-      actorsTvInfo: []
+      actorsTvInfo: [],
+      loadTvImage: [],
+      similarSeries: []
+
     }
   },
   mutations,

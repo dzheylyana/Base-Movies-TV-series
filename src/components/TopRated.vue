@@ -6,15 +6,19 @@
     <i class="fa fa-angle-left" @click="previous"></i>
     <i class="fa fa-angle-right" @click="next"></i>
   </div>
-      <transition-group class="carousel" tag="div">
+  <transition-group class="carousel" tag="div">
     <div v-for="detail in topRated" class="images" :key="detail.id">
-        <router-link :to="{ name: routerLinkName, params: { id: detail.id} }">
-          <img :src="`https://image.tmdb.org/t/p/w500/${detail.backdrop_path ?? detail.poster_path }`"
-        /></router-link>
-        <h2>{{ detail.orginal_title }}</h2>
-
+      <router-link
+        :to="{ name: routerLinkName, params: { id: detail.id, isMovie } }"
+      >
+        <img
+          :src="`https://image.tmdb.org/t/p/w500/${
+            detail.backdrop_path ?? detail.poster_path
+          }`"
+      /></router-link>
+      <h2>{{ detail.orginal_title }}</h2>
     </div>
-</transition-group>
+  </transition-group>
 </template>
 
 <script>
@@ -45,7 +49,6 @@ export default {
     }
   },
   methods: {
-
     async loadTopRated () {
       const path = this.isMovie
         ? 'movies/fetchTopMovies'
@@ -73,6 +76,9 @@ export default {
   },
   created () {
     this.loadTopRated()
+  },
+  mounted () {
+    window.aaa = this
   }
 }
 </script>

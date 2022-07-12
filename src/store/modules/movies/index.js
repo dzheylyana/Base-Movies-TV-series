@@ -12,7 +12,9 @@ export default {
       searchQuery: null,
       loadDetails: [],
       isReady: false,
-      actorsInfo: []
+      actorsInfo: [],
+      loadImage: [],
+      similarMovies: []
 
     }
   },

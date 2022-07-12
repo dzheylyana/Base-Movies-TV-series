@@ -1,7 +1,7 @@
 <template>
-    <now-playing></now-playing>
-    <top-rated :is-movie=true></top-rated>
-        <top-rated :is-movie=false></top-rated>
+    <now-playing v-bind:is-movie=true></now-playing>
+    <top-rated v-bind:is-movie=true></top-rated>
+        <top-rated v-bind:is-movie=false></top-rated>
 
      <router-view></router-view>
 </template>

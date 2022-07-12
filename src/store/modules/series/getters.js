@@ -7,5 +7,12 @@ export default {
   },
   actorsTvInfo (state) {
     return state.actorsTvInfo
+  },
+
+  loadTvImage (state) {
+    return state.loadTvImage
+  },
+  similarSeries (state) {
+    return state.similarSeries
   }
 }

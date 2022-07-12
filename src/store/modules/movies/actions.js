@@ -40,7 +40,35 @@ export default {
     )
     if (!actorsRes.ok) throw Error
     const dataWithActors = await actorsRes.json()
-    context.commit('setActors', dataWithActors)
+    context.commit('setActors', dataWithActors.cast)
+  },
+  async loadMovieImages (context, payload) {
+    const imagesRes = await fetch(
+      `https://api.themoviedb.org/3/movie/${payload.id}/images?api_key=ee88adc573d83253683533632b391538`
+    )
+    if (!imagesRes.ok) throw Error
+    const dataWithImages = await imagesRes.json()
+    context.commit('setImages', dataWithImages.backdrops
+    )
+  },
+  async loadSimilarMovies (context, payload) {
+    const similarMovieRes = await fetch(
+      `https://api.themoviedb.org/3/movie/${payload.id}/similar?api_key=ee88adc573d83253683533632b391538`
+    )
+    if (!similarMovieRes.ok) throw Error
+    const similarMovies = await similarMovieRes.json()
+    context.commit('setSimilarMovies', similarMovies.results
+    )
+  },
+  fetchMovieDetails: ({ dispatch }, payload) => {
+    const list = [
+      dispatch('loadMovieDetails', payload),
+      dispatch('loadActors', payload),
+      dispatch('loadMovieImages', payload),
+      dispatch('loadSimilarMovies', payload)
+
+    ]
+    return Promise.allSettled(list)
   }
 
 }

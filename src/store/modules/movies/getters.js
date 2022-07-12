@@ -16,6 +16,12 @@ export default {
 
   actorsInfo (state) {
     return state.actorsInfo
+  },
+  loadImage (state) {
+    return state.loadImage
+  },
+  similarMovies (state) {
+    return state.similarMovies
   }
 
 }

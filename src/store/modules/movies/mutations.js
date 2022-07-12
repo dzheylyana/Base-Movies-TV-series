@@ -15,6 +15,12 @@ export default {
 
   setActors (state, payload) {
     state.actorsInfo = payload
+  },
+  setImages (state, payload) {
+    state.loadImage = payload
+  },
+  setSimilarMovies (state, payload) {
+    state.similarMovies = payload
   }
 
 }
