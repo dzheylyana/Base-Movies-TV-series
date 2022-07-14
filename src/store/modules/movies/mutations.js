@@ -6,8 +6,8 @@ export default {
     state.topMovies = topMovies
   },
 
-  setSearch (state, searchResults) {
-    state.searchResults = searchResults
+  setSearch (state, payload) {
+    state.searchResults = payload
   },
   loadDetails (state, payload) {
     state.loadDetails = payload

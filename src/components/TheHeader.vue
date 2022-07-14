@@ -3,17 +3,10 @@
     <nav class="navbar navigation">
       <div class="leftSide">
        <router-link to="/"> <img src="../assets/Image.png" class="logo" /></router-link>
-        <form class="form-search form-inline">
-          <input type="text" class="search-query" placeholder="Search..." />
-          <div
-            v-for="searchResult in searchResults"
-            class="result"
-            :key="searchResult.id"
-            :title="searchResult.title"
-            :releaseData="searchResult.releaseData"
-          ></div>
-          <!-- <a v-bind:href="searchResult.link" target="_blank"></a> -->
-        </form>
+        <form @submit.prevent="searching" class="form-search form-inline">
+          <input type="text" class="search-query" placeholder="Search..." v-model="searchWord"/>
+
+         </form>
       </div>
       <div class="rightSide">
         <i class="fa fa-plus"></i>
@@ -30,33 +23,18 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters('movies', ['searchResults'])
+  data () {
+    return { searchWord: '' }
+  },
 
-    // searchedProducts: function () {
-    //   return searchResults.title.filter((searchResult) => {
-    //     return (
-    //       searchResult.title
-    //         .toLowerCase()
-    //         .indexOf(searchQuery.value.toLowerCase()) !== -1
-    //     )
-    //   })
-    // }
-    // filteredList () {
-    //   return this.searchResults.filter(searchResult => {
-    //     return searchResult.title.toLowerCase().includes(this.search.toLowerCase())
-    //   })
-    // }
-  },
   methods: {
-    ...mapActions('movies', ['fetchSearchResults'])
-  },
-  created () {
-    this.fetchSearchResults()
+    searching () {
+      this.$router.push({ name: 'search', params: { query: this.searchWord } })
+    }
   }
+
 }
 </script>
 

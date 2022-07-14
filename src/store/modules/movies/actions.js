@@ -16,9 +16,9 @@ export default {
     context.commit('setTopMovies', dataWithResults.results)
   },
 
-  async fetchSearchResults (context) {
+  async fetchSearchResults (context, payload) {
     const searchRes = await fetch(
-      'https://api.themoviedb.org/3/search/multi?api_key=ee88adc573d83253683533632b391538&query=outside+the+wire&page=1'
+      `https://api.themoviedb.org/3/search/multi?api_key=ee88adc573d83253683533632b391538&query=${payload.query}`
     )
     if (!searchRes.ok) throw Error
     const dataFromSearch = await searchRes.json()

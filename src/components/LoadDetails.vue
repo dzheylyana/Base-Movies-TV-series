@@ -3,11 +3,11 @@
     <img
       class="image"
       v-if="isReady"
-      :src="`https://image.tmdb.org/t/p/w500/${loadDetails.backdrop_path}`"
+      :src="`https://image.tmdb.org/t/p/w500/${details.backdrop_path}`"
     />
     <div class="movieDetails">
       <h1>{{ details.title }}</h1>
-      <h4 v-for="detail in details.genres"  :key="detail.id">
+      <h4 v-for="detail in details.genres" :key="detail.id">
         {{ detail.name }} |
       </h4>
       <h5>{{ details.overview }}</h5>
@@ -51,28 +51,29 @@
         :class="{ 'active show': isActive('cast') }"
         id="cast"
       >
-        <div class="cast">
+        <div v-if="actorsDetails && actorsDetails.length>0" class="cast">
           <div
             v-for="actor in actorsDetails.slice(0, 5)"
             class="images"
             :key="actor.id"
           >
             <img
-              :src="`https://image.tmdb.org/t/p/w500/${actor.profile_path}`"
+              :src="actor.profile_path ? imgUrl + actor.profile_path : noimage"
             />
-            <div class="actor-details">
+             <div class="actor-details">
               {{ actor.name }} {{ actor.character }}
             </div>
           </div>
         </div>
+        <div class="noCast" v-else>There's no cast for this production </div>
       </div>
-    </div>
+
     <div
       class="tab-pane fade"
       :class="{ 'active show': isActive('pictures') }"
       id="pictures"
     >
-      <div class="cast">
+      <div class="pics">
         <div
           v-for="image in loadImages.slice(0, 5)"
           class="images"
@@ -81,25 +82,28 @@
           <img :src="`https://image.tmdb.org/t/p/w500/${image.file_path}`" />
         </div>
       </div>
-      <div
-        class="tab-pane fade"
-        :class="{ 'active show': isActive('similar') }"
-        id="similar"
-      >
-        <div class="cast">
-          <div
-            v-for="similar in similarMoviesOrSeries"
-            class="images"
-            :key="similar.id"
-          >
-            <img
-              :src="`https://image.tmdb.org/t/p/w500/${similar.backdrop_path}`"
-            />
-          </div>
+    </div>
+
+    <div
+      class="tab-pane fade"
+      :class="{ 'active show': isActive('similar') }"
+      id="similar"
+    >
+      <div class="similar">
+        <div
+          v-for="similar in similarMoviesOrSeries.slice(0, 5)"
+          class="images"
+          :key="similar.id"
+        >
+          <img
+            :src="`https://image.tmdb.org/t/p/w500/${similar.poster_path}`"
+          />
+
         </div>
       </div>
     </div>
   </div>
+    </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -115,20 +119,27 @@ export default {
       details: [],
       isReady: false,
       actorsDetails: [],
-      activeItem: 'cast',
       loadImages: [],
-      similarMoviesOrSeries: []
+      similarMoviesOrSeries: [],
+      activeItem: 'cast',
+      imgUrl: 'https://image.tmdb.org/t/p/w500/',
+      noimage: '../assets/noimage.png'
     }
   },
   computed: {
-    ...mapGetters('movies', ['loadDetails']),
-    ...mapGetters('series', ['seriesDetails']),
-    ...mapGetters('movies', ['actorsInfo']),
-    ...mapGetters('series', ['actorsTvInfo']),
-    ...mapGetters('movies', ['loadImage']),
-    ...mapGetters('series', ['loadTvImage']),
-    ...mapGetters('movies', ['similarMovies']),
-    ...mapGetters('series', ['similarSeries'])
+    ...mapGetters('movies', [
+      'loadDetails',
+      'actorsInfo',
+      'loadImage',
+      'similarMovies'
+    ]),
+    ...mapGetters('series', [
+      'seriesDetails',
+      'actorsTvInfo',
+      'loadTvImage',
+      'similarSeries'
+    ])
+
   },
   methods: {
     async theDetails () {
@@ -142,8 +153,9 @@ export default {
       this.details = isMovie ? this.loadDetails : this.seriesDetails
       this.actorsDetails = isMovie ? this.actorsInfo : this.actorsTvInfo
       this.loadImages = isMovie ? this.loadImage : this.loadTvImage
-      this.similarMoviesOrSeries = isMovie ? this.similarMovies : this.similarSeries
-
+      this.similarMoviesOrSeries = isMovie
+        ? this.similarMovies
+        : this.similarSeries
       this.isReady = true
     },
     isActive (menuItem) {
@@ -152,6 +164,7 @@ export default {
     setActive (menuItem) {
       this.activeItem = menuItem
     }
+
   },
   created () {
     this.theDetails()
@@ -160,6 +173,16 @@ export default {
 </script>
 
 <style scoped>
+
+.info{
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  min-height: auto;
+}
+
 .image {
   float: left;
   margin-right: 5%;
@@ -217,6 +240,32 @@ export default {
   padding: 15px 20px;
 }
 .container {
-  padding: 50px 16px;
+  padding: 6px 6px;
 }
+.similar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  min-height: auto;
+}
+.pics {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  min-height: auto;
+}
+.noCast{
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+   width: 100%;
+  height: 130px;
+  font-size: 25px;
+  }
+
 </style>

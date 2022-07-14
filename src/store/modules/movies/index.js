@@ -9,7 +9,6 @@ export default {
       results: [],
       topMovies: [],
       searchResults: [],
-      searchQuery: null,
       loadDetails: [],
       isReady: false,
       actorsInfo: [],

@@ -18,9 +18,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
    color: #2c3e50;
- background: #020916 0% 0% no-repeat padding-box;
-opacity: 1;
-overflow: hidden;
+ opacity: 1;
+background: #020916 0% 0% no-repeat padding-box;
+ overflow: hidden;
 }
 
 nav {
