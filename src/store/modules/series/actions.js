@@ -1,7 +1,7 @@
 export default {
-  async fetchTvSeries (context) {
+  async fetchTvSeries (context, payload) {
     const seriesRes = await fetch(
-      'https://api.themoviedb.org/3/tv/top_rated?api_key=ee88adc573d83253683533632b391538'
+      `https://api.themoviedb.org/3/tv/top_rated?api_key=ee88adc573d83253683533632b391538&page=${payload.currentPage}`
     )
     if (!seriesRes.ok) throw Error
     const dataWithSeries = await seriesRes.json()

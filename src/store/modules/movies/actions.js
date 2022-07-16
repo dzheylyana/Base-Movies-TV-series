@@ -7,9 +7,9 @@ export default {
     const resData = await res.json()
     context.commit('setMovies', resData.results)
   },
-  async fetchTopMovies (context) {
+  async fetchTopMovies (context, payload) {
     const movieRes = await fetch(
-      'https://api.themoviedb.org/3/movie/top_rated?api_key=ee88adc573d83253683533632b391538'
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=ee88adc573d83253683533632b391538&page=${payload.currentPage}`
     )
     if (!movieRes.ok) throw Error
     const dataWithResults = await movieRes.json()

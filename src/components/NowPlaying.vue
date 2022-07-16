@@ -1,6 +1,6 @@
 <template>
   <div class="carousel-view">
-    <transition-group class="carousel" tag="div">
+    <transition-group class="carousel" tag="div" name="carousel">
       <div
         v-for="result in results"
         class="result"
@@ -112,6 +112,7 @@ i.fa.fa-angle-left::before {
     0% no-repeat padding-box;
   border-radius: 10px;
   opacity: 1;
+
 }
 .carousel {
   display: flex;
@@ -119,6 +120,7 @@ i.fa.fa-angle-left::before {
   align-items: center;
   overflow: hidden;
   width: 100%;
+
 }
 .result {
   flex: 0 20em;
@@ -126,8 +128,9 @@ i.fa.fa-angle-left::before {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.1s ease-in-out;
   max-width: 100%;
+    transition: transform 0.8s ease-in-out;
+
 }
 
 .result img {
@@ -145,4 +148,5 @@ i.fa.fa-angle-left::before {
 .result:last-of-type {
   opacity: 0;
 }
+
 </style>

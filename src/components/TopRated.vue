@@ -6,7 +6,7 @@
     <i class="fa fa-angle-left" @click="previous"></i>
     <i class="fa fa-angle-right" @click="next"></i>
   </div>
-  <transition-group class="carousel" tag="div">
+  <transition-group class="carousel" tag="div" name="carousel">
     <div v-for="detail in topRated" class="images" :key="detail.id">
       <router-link
         :to="{ name: routerLinkName, params: { id: detail.id, isMovie } }"
@@ -35,7 +35,9 @@ export default {
     return {
       topRated: [],
       isReady: false,
-      type: []
+      type: [],
+      startPage: 1,
+      currentPage: 1
     }
   },
   computed: {
@@ -48,14 +50,19 @@ export default {
       return this.isMovie ? 'Top Movies' : 'Top tv series'
     }
   },
+  watch: {
+    currentPage (newPage) {
+      this.loadTopRated(newPage)
+    }
+  },
   methods: {
-    async loadTopRated () {
+    async loadTopRated (value = this.currentPage) {
       const path = this.isMovie
         ? 'movies/fetchTopMovies'
         : 'series/fetchTvSeries'
 
       await this.$store.dispatch(path, {
-        id: this.id
+        currentPage: value
       })
 
       this.topRated = this.isMovie ? this.topMovies : this.tvSeries
@@ -64,21 +71,21 @@ export default {
     },
 
     next () {
-      this.type = this.isMovie ? this.topMovies : this.tvSeries
-
-      const Mfirst = this.type.shift()
-      this.type = this.type.concat(Mfirst)
+      if (this.currentPage > 10) {
+        return
+      }
+      this.currentPage++
     },
     previous () {
-      const Mlast = this.type.pop()
-      this.type = [Mlast].concat(this.topMovies)
+      if (this.currentPage <= this.startPage) {
+        return
+      }
+      this.currentPage--
     }
   },
-  created () {
-    this.loadTopRated()
-  },
+
   mounted () {
-    window.aaa = this
+    this.loadTopRated()
   }
 }
 </script>
@@ -94,7 +101,8 @@ export default {
 .top-movie-controls {
   text-align: right;
   margin-top: 85px;
-}
+
+ }
 i.fa.fa-angle-right::before {
   font-size: 23px;
   margin-right: 168px;
@@ -120,19 +128,19 @@ i.fa.fa-angle-left::before {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  transition: transform 0.3s ease-in-out;
-}
+
+    }
 
 .images img {
   width: 300px;
   height: 300px;
   border-radius: 6%;
 }
-
-.result:first-of-type {
-  opacity: 0;
+.carousel-enter-active, .carousel-leave-active {
+  transition: opacity 0.25s ease-in-out;
 }
-.result:last-of-type {
+
+.carousel-enter, .carousel-leave-to {
   opacity: 0;
 }
 </style>

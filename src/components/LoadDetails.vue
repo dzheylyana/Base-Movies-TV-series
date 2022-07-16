@@ -187,6 +187,11 @@ export default {
   float: left;
   margin-right: 5%;
   margin-left: 2%;
+  margin-top: 2%;
+    width: 340px;
+  height: 300px;
+    border-radius: 6%;
+
 }
 .movieDetails h1 {
   margin-top: 5%;
