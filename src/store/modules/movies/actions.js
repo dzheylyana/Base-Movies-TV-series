@@ -5,7 +5,7 @@ export default {
     )
     if (!res.ok) throw Error
     const resData = await res.json()
-    context.commit('setMovies', resData.results)
+    context.commit('SET_MOVIES', resData.results)
   },
   async fetchTopMovies (context, payload) {
     const movieRes = await fetch(
@@ -13,7 +13,7 @@ export default {
     )
     if (!movieRes.ok) throw Error
     const dataWithResults = await movieRes.json()
-    context.commit('setTopMovies', dataWithResults.results)
+    context.commit('SET_TOP_MOVIES', dataWithResults.results)
   },
 
   async fetchSearchResults (context, payload) {
@@ -22,7 +22,7 @@ export default {
     )
     if (!searchRes.ok) throw Error
     const dataFromSearch = await searchRes.json()
-    context.commit('setSearch', dataFromSearch.results)
+    context.commit('SET_SEARCH', dataFromSearch.results)
   },
 
   async loadMovieDetails (context, payload) {
@@ -31,7 +31,7 @@ export default {
     )
     if (!response.ok) throw Error
     const dataResponse = await response.json()
-    context.commit('loadDetails', dataResponse)
+    context.commit('SET_DETAILS', dataResponse)
   },
 
   async loadActors (context, payload) {
@@ -40,7 +40,7 @@ export default {
     )
     if (!actorsRes.ok) throw Error
     const dataWithActors = await actorsRes.json()
-    context.commit('setActors', dataWithActors.cast)
+    context.commit('SET_ACTORS', dataWithActors.cast)
   },
   async loadMovieImages (context, payload) {
     const imagesRes = await fetch(
@@ -48,7 +48,7 @@ export default {
     )
     if (!imagesRes.ok) throw Error
     const dataWithImages = await imagesRes.json()
-    context.commit('setImages', dataWithImages.backdrops
+    context.commit('SET_IMAGES', dataWithImages.backdrops
     )
   },
   async loadSimilarMovies (context, payload) {
@@ -57,7 +57,7 @@ export default {
     )
     if (!similarMovieRes.ok) throw Error
     const similarMovies = await similarMovieRes.json()
-    context.commit('setSimilarMovies', similarMovies.results
+    context.commit('SET_SIMILAR_MOVIES', similarMovies.results
     )
   },
   fetchMovieDetails: ({ dispatch }, payload) => {

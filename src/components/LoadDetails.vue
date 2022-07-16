@@ -79,7 +79,7 @@
           class="images"
           :key="image.id"
         >
-          <img :src="`https://image.tmdb.org/t/p/w500/${image.file_path}`" />
+          <img :src="imgUrl + image.file_path" />
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
           :key="similar.id"
         >
           <img
-            :src="`https://image.tmdb.org/t/p/w500/${similar.poster_path}`"
+            :src="imgUrl + similar.poster_path"
           />
 
         </div>
@@ -128,15 +128,15 @@ export default {
   },
   computed: {
     ...mapGetters('movies', [
-      'loadDetails',
+      'movieDetails',
       'actorsInfo',
-      'loadImage',
+      'movieImage',
       'similarMovies'
     ]),
     ...mapGetters('series', [
       'seriesDetails',
       'actorsTvInfo',
-      'loadTvImage',
+      'tvImage',
       'similarSeries'
     ])
 
@@ -150,9 +150,9 @@ export default {
       await this.$store.dispatch(path, {
         id: this.id
       })
-      this.details = isMovie ? this.loadDetails : this.seriesDetails
+      this.details = isMovie ? this.movieDetails : this.seriesDetails
       this.actorsDetails = isMovie ? this.actorsInfo : this.actorsTvInfo
-      this.loadImages = isMovie ? this.loadImage : this.loadTvImage
+      this.loadImages = isMovie ? this.movieImage : this.tvImage
       this.similarMoviesOrSeries = isMovie
         ? this.similarMovies
         : this.similarSeries

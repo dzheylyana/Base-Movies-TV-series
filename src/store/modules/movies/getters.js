@@ -10,15 +10,15 @@ export default {
   searchResults (state) {
     return state.searchResults
   },
-  loadDetails (state) {
-    return state.loadDetails
+  movieDetails (state) {
+    return state.movieDetails
   },
 
   actorsInfo (state) {
     return state.actorsInfo
   },
-  loadImage (state) {
-    return state.loadImage
+  movieImage (state) {
+    return state.movieImage
   },
   similarMovies (state) {
     return state.similarMovies

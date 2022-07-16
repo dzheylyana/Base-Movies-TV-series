@@ -1,18 +1,18 @@
 export default {
-  setSeries (state, tvSeries) {
+  SET_SERIES (state, tvSeries) {
     state.tvSeries = tvSeries
   },
-  seriesDetails (state, payload) {
+  SET_SERIES_DETAILS (state, payload) {
     state.seriesDetails = payload
   },
-  setTvActors (state, payload) {
+  SET_TV_ACTORS (state, payload) {
     state.actorsTvInfo = payload
   },
-  setImages (state, payload) {
-    state.loadTvImage = payload
+  SET_TV_IMAGE (state, payload) {
+    state.tvImage = payload
   },
 
-  setSimilarSeries (state, payload) {
+  SET_SIMILAR_SERIES (state, payload) {
     state.similarSeries = payload
   }
 }

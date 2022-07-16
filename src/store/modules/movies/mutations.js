@@ -1,25 +1,25 @@
 export default {
-  setMovies (state, results) {
+  SET_MOVIES (state, results) {
     state.results = results
   },
-  setTopMovies (state, topMovies) {
+  SET_TOP_MOVIES (state, topMovies) {
     state.topMovies = topMovies
   },
 
-  setSearch (state, payload) {
+  SET_SEARCH (state, payload) {
     state.searchResults = payload
   },
-  loadDetails (state, payload) {
-    state.loadDetails = payload
+  SET_DETAILS (state, payload) {
+    state.movieDetails = payload
   },
 
-  setActors (state, payload) {
+  SET_ACTORS (state, payload) {
     state.actorsInfo = payload
   },
-  setImages (state, payload) {
-    state.loadImage = payload
+  SET_IMAGES (state, payload) {
+    state.movieImage = payload
   },
-  setSimilarMovies (state, payload) {
+  SET_SIMILAR_MOVIES (state, payload) {
     state.similarMovies = payload
   }
 

@@ -17,7 +17,7 @@
         : "no name"
     }}
   </h2>
-  <img :src="`https://image.tmdb.org/t/p/w500/${searchResult.backdrop_path}`" />
+  <img :src="imgUrl + searchResult.backdrop_path" />
    </router-link>
   </div>
 </div>
@@ -28,7 +28,8 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      searchRes: []
+      searchRes: [],
+      imgUrl: 'https://image.tmdb.org/t/p/w500/'
     }
   },
 

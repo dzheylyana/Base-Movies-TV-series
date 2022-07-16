@@ -11,10 +11,7 @@
       <router-link
         :to="{ name: routerLinkName, params: { id: detail.id, isMovie } }"
       >
-        <img
-          :src="`https://image.tmdb.org/t/p/w500/${
-            detail.backdrop_path ?? detail.poster_path
-          }`"
+        <img :src="imgUrl + detail.backdrop_path ?? detail.poster_path"
       /></router-link>
       <h2>{{ detail.orginal_title }}</h2>
     </div>
@@ -37,7 +34,8 @@ export default {
       isReady: false,
       type: [],
       startPage: 1,
-      currentPage: 1
+      currentPage: 1,
+      imgUrl: 'https://image.tmdb.org/t/p/w500/'
     }
   },
   computed: {
@@ -101,8 +99,7 @@ export default {
 .top-movie-controls {
   text-align: right;
   margin-top: 85px;
-
- }
+}
 i.fa.fa-angle-right::before {
   font-size: 23px;
   margin-right: 168px;
@@ -128,19 +125,20 @@ i.fa.fa-angle-left::before {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-
-    }
+}
 
 .images img {
   width: 300px;
   height: 300px;
   border-radius: 6%;
 }
-.carousel-enter-active, .carousel-leave-active {
+.carousel-enter-active,
+.carousel-leave-active {
   transition: opacity 0.25s ease-in-out;
 }
 
-.carousel-enter, .carousel-leave-to {
+.carousel-enter,
+.carousel-leave-to {
   opacity: 0;
 }
 </style>

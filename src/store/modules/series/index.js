@@ -10,7 +10,7 @@ export default {
       seriesDetails: [],
       isReady: false,
       actorsTvInfo: [],
-      loadTvImage: [],
+      tvImage: [],
       similarSeries: []
 
     }

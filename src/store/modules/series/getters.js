@@ -9,8 +9,8 @@ export default {
     return state.actorsTvInfo
   },
 
-  loadTvImage (state) {
-    return state.loadTvImage
+  tvImage (state) {
+    return state.tvImage
   },
   similarSeries (state) {
     return state.similarSeries

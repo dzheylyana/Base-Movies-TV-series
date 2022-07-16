@@ -9,10 +9,10 @@ export default {
       results: [],
       topMovies: [],
       searchResults: [],
-      loadDetails: [],
+      movieDetails: [],
       isReady: false,
       actorsInfo: [],
-      loadImage: [],
+      movieImage: [],
       similarMovies: []
 
     }
