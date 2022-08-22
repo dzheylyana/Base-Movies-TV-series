@@ -228,11 +228,14 @@ export default {
   overflow: hidden;
   width: 100%;
   min-height: auto;
+  background-size: cover;
 }
 .images {
   margin: 30px;
   width: auto;
   background: #151f2e 0% 0% no-repeat padding-box;
+    background-size: cover;
+
 }
 
 .images img {
@@ -243,6 +246,7 @@ export default {
 
 .actor-details {
   padding: 15px 20px;
+
 }
 .container {
   padding: 6px 6px;

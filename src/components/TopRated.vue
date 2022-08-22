@@ -68,11 +68,10 @@ export default {
       this.isReady = true
     },
 
-    next () {
-      if (this.currentPage > 10) {
-        return
+    next () { // the decision is to stop in page 10, because it's beta version
+      if (this.currentPage <= 10) {
+        this.currentPage++
       }
-      this.currentPage++
     },
     previous () {
       if (this.currentPage <= this.startPage) {
